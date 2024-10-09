@@ -31,6 +31,8 @@ c <- cov_xy
 b <- 62.5
 a <- 62.5
 
+######
+
 # P(X = 2, Y = 3)
 prob_model <- dbvpois(2, 3, a, b, c)
 print(paste("Probabilidade pela Poisson Bivariada: ", prob_model))
@@ -42,12 +44,12 @@ N <- sum(data)
 prob_sample <- n_23 / N
 print(paste("Proporção amostral P(X=2, Y=3): ", prob_sample))
 
-# Comparar os resultados
 difference <- abs(prob_model - prob_sample)
 print(paste("Diferença entre o modelo e a proporção amostral: ", difference))
 
 
-# Calcular P(X ≤ 2, Y ≥ 3) usando dbvpois()
+#######
+
 total_prob <- 0
 for (x in 0:2) {  # X <= 2
   for (y in 3:7) {  # Y >= 3
@@ -56,14 +58,13 @@ for (x in 0:2) {  # X <= 2
 }
 print(paste("Probabilidade pelo modelo de Poisson Bivariada P(X <= 2, Y >= 3): ", total_prob))
 
-# Calcular a proporção amostral
+
 total_count <- sum(data[1:3, 4:8])  # Somando para X <= 2 e Y >= 3
-N <- sum(data)  # Total de observações
+N <- sum(data)
 
 prob_sample <- total_count / N
 print(paste("Proporção amostral P(X <= 2, Y >= 3): ", prob_sample))
 
-# Comparar os resultados
 difference <- abs(total_prob - prob_sample)
 print(paste("Diferença entre o modelo e a proporção amostral: ", difference))
 
